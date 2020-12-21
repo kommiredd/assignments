@@ -1,0 +1,20 @@
+\begin{circuitikz}
+    \draw
+    (0,0) node[nand port](mynand1){}
+    (2,1) node[nand port](mynand2){}
+    (0,2) node[nand port](mynand3){}
+    (-2,2) node(C){C}
+    (4,1) node[nand port](mynand4){}
+    
+    (C)--(mynand3.in 1)
+    (C)--(mynand3.in 2)
+    (mynand1.out)--(mynand2.in 2)
+    (mynand3.out)--(mynand2.in 1)
+    (mynand2.out)--(mynand4.in 1)
+    (mynand2.out)--(mynand4.in 2)
+    
+    (mynand1.in 1) node[anchor=east] {A}
+    (mynand1.in 2) node[anchor=east] {B}
+    (mynand4.out) node[anchor=west] {F}
+    ;
+\end{circuitikz}

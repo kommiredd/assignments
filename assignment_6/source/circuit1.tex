@@ -1,0 +1,16 @@
+\begin{circuitikz}
+    \draw
+    (0,0) node[or port](myor1){}
+    (2,1) node[and port](myand1){}
+    
+    (myor1.out)--(myand1.in 2)
+    
+    (myor1.in 1) node[anchor=east] {A}
+    (myor1.in 2) node[anchor=east] {B}
+    (myand1.in 1) node[anchor=east] {C}
+    (myand1.out) node[anchor=west] {F}
+    ;
+    \node at (myor1.bin 1) [ocirc, left]{} ;
+    \node at (myor1.bin 2) [ocirc, left]{} ;
+    \node at (myand1.bin 1) [ocirc, left]{} ;
+\end{circuitikz}
