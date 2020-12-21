@@ -30,21 +30,10 @@ where, $\overline{A},\overline{B}$, and $\overline{C}$ are the components of the
 
 \subsection{Truth Table}
 \begin{table}[h]
-\centering
-\begin{tabular}{|c|c|c|c|c|}
-\hline
-\textit{\textbf{A}} & \textit{\textbf{B}} & \textit{\textbf{C}} & \textit{\textbf{F}} & \textbf{Maxterms}                                     \\ \hline
-0                   & 0                   & 0                   & 1                   & -                                                     \\
-0                   & 0                   & 1                   & 0                   & \textit{A+B+$\overline{C}$}                           \\
-0                   & 1                   & 0                   & 1                   & -                                                     \\
-0                   & 1                   & 1                   & 0                   & \textit{A+$\overline{B}$+$\overline{C}$}              \\
-1                   & 0                   & 0                   & 1                   & -                                                     \\
-1                   & 0                   & 1                   & 0                   & \textit{$\overline{A}$+B+$\overline{C}$}              \\
-1                   & 1                   & 0                   & 0                   & \textit{$\overline{A}$+$\overline{B}$+C}              \\
-1                   & 1                   & 1                   & 0                   & \textit{$\overline{A}$+$\overline{B}$+$\overline{C}$} \\ \hline
-\end{tabular}
-\caption{\textit{Truth Table for eq.(1)}}
-\label{tab:my-table}
+    \centering
+    \input{table1}
+    \caption{\textit{Truth Table for eq.(1)}}
+    \label{tab:my-table}
 \end{table}
 
 From the above truth table, we get the following POS expression
@@ -54,66 +43,32 @@ From the above truth table, we get the following POS expression
 which is the same as option (C) above.
 
 \subsection{K-map}
-\begin{center}
-\begin{karnaugh-map}[4][2][1][][]
-    \maxterms{3,4,5,6,7}
-    \minterms{0,1,2}
-    \implicant{3}{7}
-    \implicant{4}{6}
-    % note: position for start of \draw is (0, Y) where Y is
-    % the Y size(number of cells high) in this case Y=2
-    \draw[color=black, ultra thin] (0, 2) --
-    node [pos=0.7, above right, anchor=south west] {$AB$} % YOU CAN CHANGE NAME OF VAR HERE, THE $X$ IS USED FOR ITALICS
-    node [pos=0.7, below left, anchor=north east] {$C$} % SAME FOR THIS
-    ++(135:1);
-\end{karnaugh-map}
-\end{center}
+
+\begin{figure}[h]
+    \centering
+    \input{kmap}
+    \caption{\textit{K-map for eq.(2)}}
+    \label{fig:kmap}
+\end{figure}
+
 the simplified POS expression obtained from the Karnaugh map above is
 \begin{equation}
     F=(\overline{A}+\overline{B}).\overline{C}
 \end{equation}
 
 \subsection{Circuit Diagram}
-\begin{center}
-\begin{circuitikz}
-    \draw
-    (0,0) node[or port](myor1){}
-    (2,1) node[and port](myand1){}
-    
-    (myor1.out)--(myand1.in 2)
-    
-    (myor1.in 1) node[anchor=east] {A}
-    (myor1.in 2) node[anchor=east] {B}
-    (myand1.in 1) node[anchor=east] {C}
-    (myand1.out) node[anchor=west] {F}
-    ;
-    \node at (myor1.bin 1) [ocirc, left]{} ;
-    \node at (myor1.bin 2) [ocirc, left]{} ;
-    \node at (myand1.bin 1) [ocirc, left]{} ;
-\end{circuitikz}
-\end{center}
-making a logic diagram using only NAND gates,
-\begin{center}
-\begin{circuitikz}
-    \draw
-    (0,0) node[nand port](mynand1){}
-    (2,1) node[nand port](mynand2){}
-    (0,2) node[nand port](mynand3){}
-    (-2,2) node(C){C}
-    (4,1) node[nand port](mynand4){}
-    
-    (C)--(mynand3.in 1)
-    (C)--(mynand3.in 2)
-    (mynand1.out)--(mynand2.in 2)
-    (mynand3.out)--(mynand2.in 1)
-    (mynand2.out)--(mynand4.in 1)
-    (mynand2.out)--(mynand4.in 2)
-    
-    (mynand1.in 1) node[anchor=east] {A}
-    (mynand1.in 2) node[anchor=east] {B}
-    (mynand4.out) node[anchor=west] {F}
-    ;
-\end{circuitikz}
-\end{center}
+\begin{figure}[h]
+    \centering
+    \input{circuit1}
+    \caption{Circuit diagram for eq.(3)}
+    \label{fig:circuit1}
+\end{figure}
+making a logic diagram using only NAND gates, (next page)
+\begin{figure}[h]
+    \centering
+    \input{circuit2}
+    \caption{Circuit diagram using only NAND gates}
+    \label{fig:circuit2}
+\end{figure}
 
 \end{document}
